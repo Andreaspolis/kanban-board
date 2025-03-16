@@ -16,6 +16,7 @@ config/name_localized={
 }
 config/description="Simple, modern and elegant Kanban board for organising your workflow"
 config/version="0.1.0"
+run/main_scene="uid://d23gc6b7bawu3"
 run/print_header=false
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(0.12549, 0.12549, 0.12549, 1)

@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsfjb1gsh0oc1"]
+
+[ext_resource type="Script" uid="uid://cdis1ennfa853" path="res://column.gd" id="1_2e7mv"]
+[ext_resource type="PackedScene" uid="uid://0rt7ve1l80bs" path="res://card.tscn" id="1_hh8dp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aogby"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.498039, 0.498039, 0.498039, 1)
+border_color = Color(0.498039, 0.498039, 0.498039, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hh8dp"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.12549, 0.12549, 0.12549, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Column" type="PanelContainer" node_paths=PackedStringArray("title_label")]
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_aogby")
+script = ExtResource("1_2e7mv")
+title_label = NodePath("TitleAndCards/Title")
+
+[node name="TitleAndCards" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Title" type="Label" parent="TitleAndCards"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Column Title"
+
+[node name="Cards" type="PanelContainer" parent="TitleAndCards"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_hh8dp")
+
+[node name="Cards" type="VBoxContainer" parent="TitleAndCards/Cards"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="PlaceholderCard" parent="TitleAndCards/Cards/Cards" instance=ExtResource("1_hh8dp")]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="PlaceholderCard2" parent="TitleAndCards/Cards/Cards" instance=ExtResource("1_hh8dp")]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="PlaceholderCard3" parent="TitleAndCards/Cards/Cards" instance=ExtResource("1_hh8dp")]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
