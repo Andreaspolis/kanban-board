@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsfjb1gsh0oc1"]
+[gd_scene load_steps=10 format=3 uid="uid://bsfjb1gsh0oc1"]
 
-[ext_resource type="Script" uid="uid://cdis1ennfa853" path="res://column.gd" id="1_2e7mv"]
-[ext_resource type="PackedScene" uid="uid://0rt7ve1l80bs" path="res://card.tscn" id="1_hh8dp"]
+[ext_resource type="Texture2D" uid="uid://cqia7voc4twwv" path="res://icons/add_card/normal.svg" id="2_nrlhv"]
+[ext_resource type="BitMap" uid="uid://bvynq2lyv20kc" path="res://icons/add_card/click_mask.png" id="2_so666"]
+[ext_resource type="Texture2D" uid="uid://v4nfjmxi02n1" path="res://icons/add_card/pressed.svg" id="3_pc28m"]
+[ext_resource type="Texture2D" uid="uid://dtxgfr5tc2410" path="res://icons/add_card/hover.svg" id="4_1unc6"]
+[ext_resource type="Script" uid="uid://cvvfgeh3ojqqd" path="res://add_card.gd" id="6_pc28m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aogby"]
 content_margin_left = 4.0
@@ -15,18 +18,22 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s16ru"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hh8dp"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
-content_margin_bottom = 4.0
 bg_color = Color(0.12549, 0.12549, 0.12549, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[node name="Column" type="PanelContainer" node_paths=PackedStringArray("title_label")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nrlhv"]
+content_margin_bottom = 4.0
+
+[node name="Column" type="PanelContainer"]
 custom_minimum_size = Vector2(200, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,35 +42,49 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_aogby")
-script = ExtResource("1_2e7mv")
-title_label = NodePath("TitleAndCards/Title")
 
 [node name="TitleAndCards" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Title" type="Label" parent="TitleAndCards"]
+[node name="Title" type="HBoxContainer" parent="TitleAndCards"]
 layout_mode = 2
-size_flags_horizontal = 4
-text = "Column Title"
 
-[node name="Cards" type="PanelContainer" parent="TitleAndCards"]
+[node name="TitleLine" type="LineEdit" parent="TitleAndCards/Title"]
+custom_minimum_size = Vector2(0.1, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/focus = SubResource("StyleBoxEmpty_s16ru")
+placeholder_text = "Column Title"
+alignment = 1
+expand_to_text_length = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+flat = true
+
+[node name="AddCardButton" type="TextureButton" parent="TitleAndCards/Title"]
+layout_mode = 2
+texture_normal = ExtResource("2_nrlhv")
+texture_pressed = ExtResource("3_pc28m")
+texture_hover = ExtResource("4_1unc6")
+texture_click_mask = ExtResource("2_so666")
+
+[node name="CardsPanel" type="PanelContainer" parent="TitleAndCards"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_hh8dp")
 
-[node name="Cards" type="VBoxContainer" parent="TitleAndCards/Cards"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TitleAndCards/CardsPanel"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nrlhv")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="Cards" type="VBoxContainer" parent="TitleAndCards/CardsPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 4
+script = ExtResource("6_pc28m")
 
-[node name="PlaceholderCard" parent="TitleAndCards/Cards/Cards" instance=ExtResource("1_hh8dp")]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-
-[node name="PlaceholderCard2" parent="TitleAndCards/Cards/Cards" instance=ExtResource("1_hh8dp")]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-
-[node name="PlaceholderCard3" parent="TitleAndCards/Cards/Cards" instance=ExtResource("1_hh8dp")]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
+[connection signal="pressed" from="TitleAndCards/Title/AddCardButton" to="TitleAndCards/CardsPanel/ScrollContainer/Cards" method="_add_card_pressed"]

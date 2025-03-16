@@ -1,11 +1,12 @@
 extends HBoxContainer
 
+var column_adder_scene: PackedScene = preload("res://column_adder.tscn")
+
 
 func _column_adding_enable() -> void:
 	add_theme_constant_override(&"separation", 4)
-	var column_adder_res: PackedScene = load("res://column_adder.tscn")
 	for i in get_child_count(false) + 1:
-		var column_adder: Control = column_adder_res.instantiate()
+		var column_adder: Control = column_adder_scene.instantiate()
 		add_child(column_adder)
 		move_child(column_adder, i + i)
 		column_adder.set_meta(&"column_adder", true)

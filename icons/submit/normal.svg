@@ -11,11 +11,6 @@
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
      id="defs1" />
-  <path
-     style="display:none;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.7223;stroke-linejoin:bevel"
-     id="path19"
-     d="m 28.999999,28.999999 c -3.676955,3.676955 -22.3230431,3.676955 -25.9999981,0 -3.67695509,-3.676955 -3.67695515,-22.3230431 -10e-8,-25.9999981 3.676955,-3.67695509 22.3230432,-3.67695515 25.9999982,-10e-8 3.676955,3.676955 3.676955,22.3230432 0,25.9999982 z"
-     transform="matrix(1.0153756,0,0,1.0153756,-0.24600981,-0.24600981)" />
   <g
      id="layer1"
      style="display:inline">

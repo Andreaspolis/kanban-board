@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="24"
+   height="24"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <circle
+     style="display:none;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+     id="circle7"
+     cx="12"
+     cy="12"
+     r="12" />
+  <g
+     id="layer1"
+     style="display:none">
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 12,2 V 22"
+       id="path1" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 2,12 H 22"
+       id="path2" />
+  </g>
+  <g
+     id="g4"
+     style="display:none">
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 12,2 V 22"
+       id="path3" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 2,12 H 22"
+       id="path4" />
+    <circle
+       style="display:inline;fill:#000000;fill-opacity:0.154583;stroke:none;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       id="path7"
+       cx="12"
+       cy="12"
+       r="12" />
+  </g>
+  <g
+     id="g6"
+     style="display:inline">
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 12,3 V 21"
+       id="path5" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 3,12 H 21"
+       id="path6" />
+    <circle
+       style="display:inline;fill:#000000;fill-opacity:0.295486;stroke:none;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       id="path7-2"
+       cx="12"
+       cy="12"
+       r="12" />
+  </g>
+</svg>

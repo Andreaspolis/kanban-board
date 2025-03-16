@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://d23gc6b7bawu3"]
+[gd_scene load_steps=10 format=3 uid="uid://d23gc6b7bawu3"]
 
 [ext_resource type="Script" uid="uid://c3p4f1ji3vdnw" path="res://column_adding.gd" id="1_4c57u"]
-[ext_resource type="PackedScene" uid="uid://bsfjb1gsh0oc1" path="res://column.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cfa68xe5d2pvg" path="res://icons/settings/hover.svg" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://df507hog8ccyg" path="res://icons/settings/normal.svg" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://bb7s25uoicutn" path="res://icons/settings/pressed.svg" id="3_1bvp3"]
@@ -35,17 +34,14 @@ size_flags_vertical = 3
 theme_override_constants/separation = 8
 script = ExtResource("1_4c57u")
 
-[node name="PlaceholderColumn" parent="ScrollContainer/Columns" instance=ExtResource("1_ig7tw")]
+[node name="PlaceholderColumn" parent="ScrollContainer/Columns" instance_placeholder="res://column.tscn"]
 layout_mode = 2
-title = "Planned"
 
-[node name="PlaceholderColumn2" parent="ScrollContainer/Columns" instance=ExtResource("1_ig7tw")]
+[node name="PlaceholderColumn2" parent="ScrollContainer/Columns" instance_placeholder="res://column.tscn"]
 layout_mode = 2
-title = "In Progress"
 
-[node name="PlaceholderColumn3" parent="ScrollContainer/Columns" instance=ExtResource("1_ig7tw")]
+[node name="PlaceholderColumn3" parent="ScrollContainer/Columns" instance_placeholder="res://column.tscn"]
 layout_mode = 2
-title = "Completed"
 
 [node name="SettingsButton" type="TextureButton" parent="." node_paths=PackedStringArray("submit_button")]
 layout_mode = 1
