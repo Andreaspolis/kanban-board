@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://0rt7ve1l80bs"]
 
 [ext_resource type="Texture2D" uid="uid://d1gty14jh6h2s" path="res://icons/accept/normal.svg" id="1_e484p"]
-[ext_resource type="Script" uid="uid://uvpijgr0sduk" path="res://card_editing.gd" id="1_fpac0"]
+[ext_resource type="Script" uid="uid://uvpijgr0sduk" path="res://card.gd" id="1_fpac0"]
 [ext_resource type="Texture2D" uid="uid://cqomphygi5ccs" path="res://icons/accept/pressed.svg" id="2_fpac0"]
 [ext_resource type="Texture2D" uid="uid://bfy84074mflru" path="res://icons/accept/hover.svg" id="3_1i5pp"]
 [ext_resource type="BitMap" uid="uid://bxdmgykj6xbyx" path="res://icons/accept/click_mask.png" id="4_pjytt"]
@@ -31,7 +31,7 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[node name="TextEdit" type="TextEdit" node_paths=PackedStringArray("check_button", "edit_button")]
+[node name="CardText" type="TextEdit" node_paths=PackedStringArray("check_button", "edit_button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

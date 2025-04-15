@@ -34,15 +34,6 @@ size_flags_vertical = 3
 theme_override_constants/separation = 8
 script = ExtResource("1_4c57u")
 
-[node name="PlaceholderColumn" parent="ScrollContainer/Columns" instance_placeholder="res://column.tscn"]
-layout_mode = 2
-
-[node name="PlaceholderColumn2" parent="ScrollContainer/Columns" instance_placeholder="res://column.tscn"]
-layout_mode = 2
-
-[node name="PlaceholderColumn3" parent="ScrollContainer/Columns" instance_placeholder="res://column.tscn"]
-layout_mode = 2
-
 [node name="SettingsButton" type="TextureButton" parent="." node_paths=PackedStringArray("submit_button")]
 layout_mode = 1
 anchors_preset = 3
