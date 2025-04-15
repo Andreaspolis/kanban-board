@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://7bm2ehxx23qu"]
+
+[ext_resource type="Texture2D" uid="uid://cqia7voc4twwv" path="res://icons/add_card/normal.svg" id="1_6ngrr"]
+[ext_resource type="Texture2D" uid="uid://v4nfjmxi02n1" path="res://icons/add_card/pressed.svg" id="2_0mr4o"]
+[ext_resource type="Texture2D" uid="uid://dtxgfr5tc2410" path="res://icons/add_card/hover.svg" id="3_8jtiu"]
+[ext_resource type="BitMap" uid="uid://bvynq2lyv20kc" path="res://icons/add_card/click_mask.png" id="4_351lu"]
+[ext_resource type="Script" uid="uid://cvvfgeh3ojqqd" path="res://add_card.gd" id="5_hvwf8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aogby"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.498039, 0.498039, 0.498039, 1)
+border_color = Color(0.498039, 0.498039, 0.498039, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s16ru"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hh8dp"]
+bg_color = Color(0.12549, 0.12549, 0.12549, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nrlhv"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
+[node name="Section" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_aogby")
+
+[node name="TitleAndCards" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 4
+
+[node name="Title" type="HBoxContainer" parent="TitleAndCards"]
+layout_mode = 2
+
+[node name="TitleLine" type="LineEdit" parent="TitleAndCards/Title"]
+custom_minimum_size = Vector2(0.1, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/focus = SubResource("StyleBoxEmpty_s16ru")
+placeholder_text = "Column Title"
+alignment = 1
+expand_to_text_length = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+flat = true
+
+[node name="AddCardButton" type="TextureButton" parent="TitleAndCards/Title"]
+layout_mode = 2
+texture_normal = ExtResource("1_6ngrr")
+texture_pressed = ExtResource("2_0mr4o")
+texture_hover = ExtResource("3_8jtiu")
+texture_click_mask = ExtResource("4_351lu")
+
+[node name="CardsPanel" type="PanelContainer" parent="TitleAndCards"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_hh8dp")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TitleAndCards/CardsPanel"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nrlhv")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="Cards" type="VBoxContainer" parent="TitleAndCards/CardsPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 4
+script = ExtResource("5_hvwf8")
+
+[connection signal="pressed" from="TitleAndCards/Title/AddCardButton" to="TitleAndCards/CardsPanel/ScrollContainer/Cards" method="_add_card_pressed"]

@@ -25,13 +25,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-vertical_scroll_mode = 0
 
 [node name="Columns" type="HBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 8
 script = ExtResource("1_4c57u")
 
 [node name="SettingsButton" type="TextureButton" parent="." node_paths=PackedStringArray("submit_button")]

@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://wofdx6u23pry"]
+[gd_scene load_steps=5 format=3 uid="uid://cxk8ywd5qvrpc"]
 
-[ext_resource type="Texture2D" uid="uid://ciluxkn7almig" path="res://icons/add_column/normal.svg" id="1_1lhkl"]
-[ext_resource type="Texture2D" uid="uid://cctj6r4tlw3om" path="res://icons/add_column/pressed.svg" id="2_u3k53"]
-[ext_resource type="Script" uid="uid://bsmis6qxc2hfl" path="res://add_column.gd" id="3_u3k53"]
+[ext_resource type="Texture2D" uid="uid://ciluxkn7almig" path="res://icons/add_column/normal.svg" id="1_wvk15"]
+[ext_resource type="Texture2D" uid="uid://cctj6r4tlw3om" path="res://icons/add_column/pressed.svg" id="2_irn54"]
+[ext_resource type="Script" uid="uid://dvnjjwrabsrhq" path="res://add_section.gd" id="3_wvk15"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lhkl"]
 bg_color = Color(1, 1, 1, 0.12549)
@@ -11,18 +11,18 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[node name="ColumnAdder" type="TextureButton" node_paths=PackedStringArray("hover_panel")]
+[node name="SectionAdder" type="TextureButton" node_paths=PackedStringArray("hover_panel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("1_1lhkl")
-texture_pressed = ExtResource("2_u3k53")
+texture_normal = ExtResource("1_wvk15")
+texture_pressed = ExtResource("2_irn54")
 stretch_mode = 3
-script = ExtResource("3_u3k53")
+script = ExtResource("3_wvk15")
 hover_panel = NodePath("HoverPanel")
-metadata/column_adder = true
+metadata/section_adder = true
 
 [node name="HoverPanel" type="Panel" parent="."]
 visible = false
