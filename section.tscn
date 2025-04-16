@@ -1,10 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://7bm2ehxx23qu"]
+[gd_scene load_steps=6 format=3 uid="uid://7bm2ehxx23qu"]
 
-[ext_resource type="Texture2D" uid="uid://cqia7voc4twwv" path="res://icons/add_card/normal.svg" id="1_6ngrr"]
-[ext_resource type="Texture2D" uid="uid://v4nfjmxi02n1" path="res://icons/add_card/pressed.svg" id="2_0mr4o"]
-[ext_resource type="Texture2D" uid="uid://dtxgfr5tc2410" path="res://icons/add_card/hover.svg" id="3_8jtiu"]
-[ext_resource type="BitMap" uid="uid://bvynq2lyv20kc" path="res://icons/add_card/click_mask.png" id="4_351lu"]
-[ext_resource type="Script" uid="uid://cvvfgeh3ojqqd" path="res://add_card.gd" id="5_hvwf8"]
+[ext_resource type="Script" uid="uid://cggqs1u66sd0y" path="res://section.gd" id="1_0mr4o"]
+[ext_resource type="Script" uid="uid://drjbveews2tpj" path="res://section_right_click_popup.gd" id="7_8jtiu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aogby"]
 content_margin_left = 4.0
@@ -27,14 +24,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nrlhv"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-
-[node name="Section" type="PanelContainer"]
-custom_minimum_size = Vector2(0, 200)
+[node name="Section" type="PanelContainer" node_paths=PackedStringArray("right_click_popup", "cards_parent")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -43,6 +33,9 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_aogby")
+script = ExtResource("1_0mr4o")
+right_click_popup = NodePath("TitleAndCards/CardsPanel/RightClickPopup")
+cards_parent = NodePath("TitleAndCards/CardsPanel/CardsMargins/Cards")
 
 [node name="TitleAndCards" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -53,40 +46,39 @@ theme_override_constants/separation = 4
 layout_mode = 2
 
 [node name="TitleLine" type="LineEdit" parent="TitleAndCards/Title"]
-custom_minimum_size = Vector2(0.1, 0)
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_s16ru")
 placeholder_text = "Column Title"
 alignment = 1
-expand_to_text_length = true
 context_menu_enabled = false
-emoji_menu_enabled = false
 flat = true
-
-[node name="AddCardButton" type="TextureButton" parent="TitleAndCards/Title"]
-layout_mode = 2
-texture_normal = ExtResource("1_6ngrr")
-texture_pressed = ExtResource("2_0mr4o")
-texture_hover = ExtResource("3_8jtiu")
-texture_click_mask = ExtResource("4_351lu")
 
 [node name="CardsPanel" type="PanelContainer" parent="TitleAndCards"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_hh8dp")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TitleAndCards/CardsPanel"]
+[node name="CardsMargins" type="MarginContainer" parent="TitleAndCards/CardsPanel"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_nrlhv")
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
-[node name="Cards" type="VBoxContainer" parent="TitleAndCards/CardsPanel/ScrollContainer"]
+[node name="Cards" type="VBoxContainer" parent="TitleAndCards/CardsPanel/CardsMargins"]
+custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 4
-script = ExtResource("5_hvwf8")
 
-[connection signal="pressed" from="TitleAndCards/Title/AddCardButton" to="TitleAndCards/CardsPanel/ScrollContainer/Cards" method="_add_card_pressed"]
+[node name="RightClickPopup" type="PopupMenu" parent="TitleAndCards/CardsPanel"]
+size = Vector2i(144, 35)
+script = ExtResource("7_8jtiu")
+
+[connection signal="add_card" from="TitleAndCards/CardsPanel/RightClickPopup" to="." method="_add_card"]
+[connection signal="add_section" from="TitleAndCards/CardsPanel/RightClickPopup" to="." method="_add_section"]
+[connection signal="id_pressed" from="TitleAndCards/CardsPanel/RightClickPopup" to="TitleAndCards/CardsPanel/RightClickPopup" method="_id_pressed"]
+[connection signal="remove_section" from="TitleAndCards/CardsPanel/RightClickPopup" to="." method="_remove_section"]

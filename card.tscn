@@ -1,13 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://0rt7ve1l80bs"]
+[gd_scene load_steps=4 format=3 uid="uid://0rt7ve1l80bs"]
 
-[ext_resource type="Texture2D" uid="uid://d1gty14jh6h2s" path="res://icons/accept/normal.svg" id="1_e484p"]
 [ext_resource type="Script" uid="uid://uvpijgr0sduk" path="res://card.gd" id="1_fpac0"]
-[ext_resource type="Texture2D" uid="uid://cqomphygi5ccs" path="res://icons/accept/pressed.svg" id="2_fpac0"]
-[ext_resource type="Texture2D" uid="uid://bfy84074mflru" path="res://icons/accept/hover.svg" id="3_1i5pp"]
-[ext_resource type="BitMap" uid="uid://bxdmgykj6xbyx" path="res://icons/accept/click_mask.png" id="4_pjytt"]
-[ext_resource type="Texture2D" uid="uid://cbip0qbgbpaxq" path="res://icons/edit/normal.svg" id="6_b4rk6"]
-[ext_resource type="Texture2D" uid="uid://ruxd00jroyer" path="res://icons/edit/pressed.svg" id="7_6lcat"]
-[ext_resource type="Texture2D" uid="uid://5rhvsvf65bl" path="res://icons/edit/hover.svg" id="8_ut1v0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxf5b"]
 content_margin_left = 4.0
@@ -31,12 +24,13 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[node name="CardText" type="TextEdit" node_paths=PackedStringArray("check_button", "edit_button")]
+[node name="Card" type="TextEdit"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_nxf5b")
 theme_override_styles/focus = SubResource("StyleBoxFlat_kikvd")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_nxf5b")
@@ -47,41 +41,3 @@ drag_and_drop_selection_enabled = false
 wrap_mode = 1
 scroll_fit_content_height = true
 script = ExtResource("1_fpac0")
-check_button = NodePath("CheckButton")
-edit_button = NodePath("EditButton")
-
-[node name="CheckButton" type="TextureButton" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -16.0
-grow_horizontal = 0
-grow_vertical = 0
-texture_normal = ExtResource("1_e484p")
-texture_pressed = ExtResource("2_fpac0")
-texture_hover = ExtResource("3_1i5pp")
-texture_click_mask = ExtResource("4_pjytt")
-
-[node name="EditButton" type="TextureButton" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -16.0
-grow_horizontal = 0
-grow_vertical = 0
-texture_normal = ExtResource("6_b4rk6")
-texture_pressed = ExtResource("7_6lcat")
-texture_hover = ExtResource("8_ut1v0")
-texture_click_mask = ExtResource("4_pjytt")
-
-[connection signal="pressed" from="CheckButton" to="." method="_check_button_pressed"]
-[connection signal="pressed" from="EditButton" to="." method="_edit_button_pressed"]
