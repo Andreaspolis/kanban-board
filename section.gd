@@ -46,7 +46,6 @@ func _remove_section() -> void:
 		queue_free()
 
 
-
 func _can_drop_data(at_position: Vector2, _data: Variant) -> bool:
 	return cards_parent.get_rect().has_point(at_position)
 

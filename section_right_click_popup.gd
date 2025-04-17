@@ -4,31 +4,46 @@ signal add_card
 signal add_section(side: Side)
 signal remove_section
 
+enum MenuItemId {
+	ADD_CARD,
+	REMOVE_SECTION
+}
+
 
 func _ready() -> void:
-	add_item("Add card", 0)
+	add_icon_item(preload("res://icons/add.svg"), "Add card", MenuItemId.ADD_CARD)
 	add_separator()
-	var submenu := PopupMenu.new()
-	submenu.add_item("To left", 2)
-	submenu.add_item("To top", 3)
-	submenu.add_item("To right", 4)
-	submenu.add_item("To bottom", 5)
-	submenu.id_pressed.connect(_id_pressed)
-	add_submenu_node_item("Add section", submenu)
-	add_item("Remove section", 1)
+
+	var add_section_submenu := PopupMenu.new()
+	add_section_submenu.add_icon_item(
+		preload("res://icons/add_section_left.svg"),
+		"Left", SIDE_LEFT
+	)
+	add_section_submenu.add_icon_item(
+		preload("res://icons/add_section_top.svg"),
+		"Top", SIDE_TOP
+	)
+	add_section_submenu.add_icon_item(
+		preload("res://icons/add_section_right.svg"),
+		"Right", SIDE_RIGHT
+	)
+	add_section_submenu.add_icon_item(
+		preload("res://icons/add_section_bottom.svg"),
+		"Bottom", SIDE_BOTTOM
+	)
+	add_section_submenu.id_pressed.connect(
+		func(id: int):
+			add_section.emit(id)
+	)
+	add_submenu_node_item("Add section", add_section_submenu)
+	set_item_icon(2, preload("res://icons/add_section.svg"))
+
+	add_icon_item(preload("res://icons/remove_section.svg"), "Remove section", MenuItemId.REMOVE_SECTION)
 
 
 func _id_pressed(id: int) -> void:
 	match id:
-		0:
+		MenuItemId.ADD_CARD:
 			add_card.emit()
-		1:
+		MenuItemId.REMOVE_SECTION:
 			remove_section.emit()
-		2:
-			add_section.emit(SIDE_LEFT)
-		3:
-			add_section.emit(SIDE_TOP)
-		4:
-			add_section.emit(SIDE_RIGHT)
-		5:
-			add_section.emit(SIDE_BOTTOM)

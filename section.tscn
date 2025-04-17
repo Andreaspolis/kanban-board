@@ -32,6 +32,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_aogby")
 script = ExtResource("1_0mr4o")
 right_click_popup = NodePath("TitleAndCards/CardsPanel/RightClickPopup")

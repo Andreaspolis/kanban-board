@@ -18,10 +18,13 @@ config/description="Simple, modern and elegant Kanban board for organising your 
 config/version="0.1.0"
 run/main_scene="uid://d23gc6b7bawu3"
 run/print_header=false
+run/enable_alt_space_menu=true
 config/features=PackedStringArray("4.5", "GL Compatibility")
 run/low_processor_mode=true
 boot_splash/bg_color=Color(0.12549, 0.12549, 0.12549, 1)
-config/icon="res://icons/icon.svg"
+boot_splash/fullsize=false
+boot_splash/image="uid://gdd5u2lgq08r"
+config/icon="res://icons/app/icon.svg"
 
 [display]
 
