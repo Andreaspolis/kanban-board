@@ -7,12 +7,12 @@ extends Control
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			right_click_popup.position = event.global_position
-			right_click_popup.popup()
+			show_right_click_menu(event.global_position)
 
 
 func _add_card() -> void:
 	var card = preload("res://card.tscn").instantiate()
+	card.open_popup.connect(show_right_click_menu)
 	cards_parent.add_child(card)
 
 
@@ -39,7 +39,7 @@ func _add_section(side: int) -> void:
 func _remove_section() -> void:
 	if get_parent().get_child_count() == 1:
 		if get_parent().get_parent().get_child_count() == 1:
-			print("Can't remove last section")
+			push_error("Can't remove last section")
 		else:
 			get_parent().queue_free()
 	else:
@@ -52,3 +52,11 @@ func _can_drop_data(at_position: Vector2, _data: Variant) -> bool:
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	data.reparent(cards_parent)
+
+func show_right_click_menu(location: Vector2, card: Control = null) -> void:
+	right_click_popup.position = location
+	if card:
+		right_click_popup.removable_card = card
+	else:
+		right_click_popup.removable_card = null
+	right_click_popup.popup()

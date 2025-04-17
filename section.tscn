@@ -35,7 +35,7 @@ size_flags_vertical = 3
 focus_mode = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_aogby")
 script = ExtResource("1_0mr4o")
-right_click_popup = NodePath("TitleAndCards/CardsPanel/RightClickPopup")
+right_click_popup = NodePath("RightClickPopup")
 cards_parent = NodePath("TitleAndCards/CardsPanel/CardsMargins/Cards")
 
 [node name="TitleAndCards" type="VBoxContainer" parent="."]
@@ -75,11 +75,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 4
 
-[node name="RightClickPopup" type="PopupMenu" parent="TitleAndCards/CardsPanel"]
+[node name="RightClickPopup" type="PopupMenu" parent="."]
 size = Vector2i(144, 35)
 script = ExtResource("7_8jtiu")
 
-[connection signal="add_card" from="TitleAndCards/CardsPanel/RightClickPopup" to="." method="_add_card"]
-[connection signal="add_section" from="TitleAndCards/CardsPanel/RightClickPopup" to="." method="_add_section"]
-[connection signal="id_pressed" from="TitleAndCards/CardsPanel/RightClickPopup" to="TitleAndCards/CardsPanel/RightClickPopup" method="_id_pressed"]
-[connection signal="remove_section" from="TitleAndCards/CardsPanel/RightClickPopup" to="." method="_remove_section"]
+[connection signal="about_to_popup" from="RightClickPopup" to="RightClickPopup" method="_about_to_popup"]
+[connection signal="add_card" from="RightClickPopup" to="." method="_add_card"]
+[connection signal="add_section" from="RightClickPopup" to="." method="_add_section"]
+[connection signal="id_pressed" from="RightClickPopup" to="RightClickPopup" method="_id_pressed"]
+[connection signal="remove_section" from="RightClickPopup" to="." method="_remove_section"]
