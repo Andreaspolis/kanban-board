@@ -15,8 +15,14 @@ var removable_card: Control = null
 
 
 func _ready() -> void:
-	add_icon_item(preload("res://icons/add.svg"), "Add card", MenuItemId.ADD_CARD)
-	add_icon_item(preload("res://icons/remove.svg"), "Remove card", MenuItemId.REMOVE_CARD)
+	add_icon_item(
+		preload("res://icons/add.svg"),
+		"Add card", MenuItemId.ADD_CARD
+	)
+	add_icon_item(
+		preload("res://icons/remove.svg"),
+		"Remove card", MenuItemId.REMOVE_CARD
+	)
 	add_separator()
 
 	var add_section_submenu := PopupMenu.new()
@@ -40,10 +46,18 @@ func _ready() -> void:
 		func(id: int):
 			add_section.emit(id)
 	)
-	add_submenu_node_item("Add section", add_section_submenu, MenuItemId.ADD_SECTION)
-	set_item_icon(get_item_index(MenuItemId.ADD_SECTION), preload("res://icons/add_section.svg"))
+	add_submenu_node_item(
+		"Add section", add_section_submenu, MenuItemId.ADD_SECTION
+	)
+	set_item_icon(
+		get_item_index(MenuItemId.ADD_SECTION),
+		preload("res://icons/add_section.svg")
+	)
 
-	add_icon_item(preload("res://icons/remove_section.svg"), "Remove section", MenuItemId.REMOVE_SECTION)
+	add_icon_item(
+		preload("res://icons/remove_section.svg"),
+		"Remove section", MenuItemId.REMOVE_SECTION
+	)
 
 
 func _about_to_popup() -> void:
@@ -60,7 +74,13 @@ func _id_pressed(id: int) -> void:
 	match id:
 		MenuItemId.ADD_CARD:
 			add_card.emit()
+			SaveManager.card_added(get_parent().get_index(), get_index())
 		MenuItemId.REMOVE_CARD:
+			SaveManager.card_removed(
+				get_parent().get_parent().get_index(),
+				get_parent().get_index(),
+				removable_card.get_index()
+			)
 			removable_card.queue_free()
 		MenuItemId.REMOVE_SECTION:
 			remove_section.emit()

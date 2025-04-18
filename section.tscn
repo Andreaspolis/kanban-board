@@ -24,7 +24,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[node name="Section" type="PanelContainer" node_paths=PackedStringArray("right_click_popup", "cards_parent")]
+[node name="Section" type="PanelContainer" node_paths=PackedStringArray("right_click_popup", "cards_parent", "title_line")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -37,6 +37,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_aogby")
 script = ExtResource("1_0mr4o")
 right_click_popup = NodePath("RightClickPopup")
 cards_parent = NodePath("TitleAndCards/CardsPanel/CardsMargins/Cards")
+title_line = NodePath("TitleAndCards/Title/TitleLine")
 
 [node name="TitleAndCards" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -74,11 +75,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 4
+metadata/section_root = NodePath("../../../..")
 
 [node name="RightClickPopup" type="PopupMenu" parent="."]
 size = Vector2i(144, 35)
+submenu_popup_delay = 0.01
 script = ExtResource("7_8jtiu")
 
+[connection signal="text_changed" from="TitleAndCards/Title/TitleLine" to="." method="_title_changed"]
 [connection signal="about_to_popup" from="RightClickPopup" to="RightClickPopup" method="_about_to_popup"]
 [connection signal="add_card" from="RightClickPopup" to="." method="_add_card"]
 [connection signal="add_section" from="RightClickPopup" to="." method="_add_section"]

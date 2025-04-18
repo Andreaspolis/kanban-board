@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bsfjb1gsh0oc1"]
 
-[ext_resource type="PackedScene" uid="uid://7bm2ehxx23qu" path="res://section.tscn" id="2_2e7mv"]
+[ext_resource type="Script" uid="uid://c3djv7xs36uwo" path="res://load_sections.gd" id="1_hh8dp"]
 
 [node name="Column" type="VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -12,6 +12,4 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 8
-
-[node name="Section" parent="." instance=ExtResource("2_2e7mv")]
-layout_mode = 2
+script = ExtResource("1_hh8dp")

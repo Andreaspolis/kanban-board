@@ -26,6 +26,10 @@ boot_splash/fullsize=false
 boot_splash/image="uid://gdd5u2lgq08r"
 config/icon="res://icons/app/icon.svg"
 
+[autoload]
+
+SaveManager="*res://global/save_manager.gd"
+
 [display]
 
 window/energy_saving/keep_screen_on=false

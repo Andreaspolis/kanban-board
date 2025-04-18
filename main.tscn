@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d23gc6b7bawu3"]
 
-[ext_resource type="PackedScene" uid="uid://bsfjb1gsh0oc1" path="res://column.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://dn3363ytruo0w" path="res://load_columns.gd" id="1_ig7tw"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -22,6 +22,4 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="Column" parent="ScrollContainer/Columns" instance=ExtResource("2_0xm2m")]
-layout_mode = 2
+script = ExtResource("1_ig7tw")
