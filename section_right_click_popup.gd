@@ -74,7 +74,6 @@ func _id_pressed(id: int) -> void:
 	match id:
 		MenuItemId.ADD_CARD:
 			add_card.emit()
-			SaveManager.card_added(get_parent().get_index(), get_index())
 		MenuItemId.REMOVE_CARD:
 			SaveManager.card_removed(
 				get_parent().get_parent().get_index(),

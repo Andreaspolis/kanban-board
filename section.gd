@@ -7,7 +7,7 @@ extends Control
 
 func load_data() -> void:
 	for card: String in SaveManager.data[get_parent().get_index()][get_index()].cards:
-		_add_card(card)
+		add_card_no_save(card)
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -17,6 +17,11 @@ func _gui_input(event: InputEvent) -> void:
 
 
 func _add_card(text: String = "") -> void:
+	add_card_no_save(text)
+	SaveManager.card_added(get_parent().get_index(), get_index())
+
+
+func add_card_no_save(text: String = "") -> void:
 	var card = preload("res://card.tscn").instantiate()
 	card.text = text
 	card.open_popup.connect(show_right_click_menu)
@@ -38,6 +43,7 @@ func _add_section(side: Side) -> void:
 
 func add_column(index: int) -> void:
 	var column = load("res://column.tscn").instantiate()
+	column.add_child(preload("res://section.tscn").instantiate())
 	get_parent().add_sibling(column)
 	get_parent().get_parent().move_child(column, index)
 	SaveManager.column_added(index)
@@ -74,12 +80,20 @@ func _title_changed(new_text: String) -> void:
 	SaveManager.section_renamed(get_parent().get_index(), get_index(), new_text)
 
 
-func _can_drop_data(at_position: Vector2, _data: Variant) -> bool:
+func _can_drop_data(at_position: Vector2, _card: Variant) -> bool:
 	return cards_parent.get_rect().has_point(at_position)
 
 
-func _drop_data(_at_position: Vector2, data: Variant) -> void:
-	data.reparent(cards_parent)
+func _drop_data(_at_position: Vector2, card: Variant) -> void:
+	var section = card.get_node("../../../../..")
+	var column_index = section.get_parent().get_index()
+	var section_index = section.get_index()
+	var card_index = card.get_index()
+	card.reparent(cards_parent)
+	SaveManager.card_moved(
+		column_index, section_index, card_index,
+		get_parent().get_index(), get_index()
+	)
 
 func show_right_click_menu(location: Vector2, card: Control = null) -> void:
 	right_click_popup.position = location

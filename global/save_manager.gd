@@ -14,7 +14,7 @@ func column_added(index: int) -> void:
 
 
 func column_removed(index: int) -> void:
-	data.pop_at(index)
+	data.remove_at(index)
 
 
 func section_added(column_index: int, section_index: int) -> void:
@@ -22,7 +22,7 @@ func section_added(column_index: int, section_index: int) -> void:
 
 
 func section_removed(column_index: int, section_index: int) -> void:
-	data[column_index].pop_at(section_index)
+	data[column_index].remove_at(section_index)
 
 
 func section_renamed(column_index: int, section_index: int, text: String) -> void:
@@ -34,7 +34,15 @@ func card_added(column_index: int, section_index: int) -> void:
 
 
 func card_removed(column_index: int, section_index: int, card_index: int) -> void:
-	data[column_index][section_index].cards.pop_at(card_index)
+	data[column_index][section_index].cards.remove_at(card_index)
+
+
+func card_moved(
+	column_from: int, section_from: int, card_from: int,
+	column_to: int, section_to: int
+) -> void:
+	var card = data[column_from][section_from].cards.pop_at(card_from)
+	data[column_to][section_to].cards.append(card)
 
 
 func card_edited(
